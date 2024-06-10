@@ -1,0 +1,56 @@
+---
+import GitHub from '@/icons/GitHub.astro'
+import Typography from '@/ui/Typography.astro'
+import { GITHUB_URL, ISSUE_URL } from '@/lib/const'
+---
+
+<footer class="text-center grow flex justify-end items-center flex-col mt-32 mb-4">
+  <p class="text-neutral-300">
+    Created by
+    <a
+      href="http://github.com/francolloveras"
+      class="font-medium hover:text-purple-400 underline-offset-2 hover:underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Franco Lloveras
+    </a>
+    with
+    <button id="footer-button" class="-ml-0.5 -mr-1">❤️</button>
+    .
+  </p>
+  <div class="flex gap-x-1 justify-center items-center text-neutral-400 text-xs md:text-sm">
+    <Typography
+      as="a"
+      href={GITHUB_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      variant="icon"
+      class="underline-offset-2 hover:underline"
+    >
+      <GitHub class="w-3.5 mb-0.5" />
+      <span>GitHub</span>
+    </Typography>
+    &bull;
+    <Typography
+      as="a"
+      href={ISSUE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      variant="icon"
+      class="underline-offset-2 hover:underline"
+    >
+      <span>Reporta a issue</span>
+    </Typography>
+  </div>
+</footer>
+
+<script>
+  import { createConfetti } from '@/lib/utils'
+
+  const button = document.getElementById('footer-button') as HTMLButtonElement
+
+  button.addEventListener('click', () => {
+    createConfetti()
+  })
+</script>

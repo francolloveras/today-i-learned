@@ -1,0 +1,51 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Add Tailwind custom class
+sortTitle: Add Tailwind class
+date: 2024-06-06
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+Using `plugins` and `addUtilities` method we can add custom classes to Tailwindcss.
+
+Example adding `scrollbar-gutter` support to Tailwindcss.
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+export default {
+  // ...
+  theme: {
+    extend: {
+      // ...
+      // Create the properties
+      scrollbarGutter: {
+        stable: 'stable',
+        unset: 'unset',
+        'both-edges': 'both-edges'
+      }
+    }
+  },
+  plugins: [
+    // ...
+    function ({ addUtilities }) {
+      const newUtilities = {
+        // Set the class name
+        '.scrollbar-stable': {
+          scrollbarGutter: 'stable'
+        },
+        '.scrollbar-both-edges': {
+          scrollbarGutter: 'both-edges'
+        },
+        '.scrollbar-unset': {
+          scrollbarGutter: 'unset'
+        }
+      }
+
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    }
+  ]
+}
+```

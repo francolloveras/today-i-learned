@@ -1,0 +1,32 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Kill Ubuntu process that is using a port
+sortTitle: Kill Ubuntu process
+date: 2024-04-22
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+First you need to know the process ID (PID), you can find this running the following command.
+
+```bash
+sudo lsof -i :PORT
+```
+
+This command will list all processes using the specified port, along with their PID.
+
+Then with the PID number and the `kill` command you can terminate it.
+
+```bash
+sudo kill PID
+```
+
+If `sudo kill PID` doesn't remove the process, you might need to use a more forceful termination signal, such as `SIGKILL`.
+
+Use the `kill` command with the `-9` option to send the SIGKILL signal.
+
+```bash
+sudo kill -9 PID
+```

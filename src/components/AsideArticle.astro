@@ -1,0 +1,87 @@
+---
+import Typography from '@/ui/Typography.astro'
+import GitHubIcon from '@/icons/GitHub.astro'
+import ArrowUpIcon from '@/components/ui/icons/ArrowCircleUp.astro'
+import type { Heading } from '@/lib/types'
+import { GITHUB_URL } from '@/lib/const'
+
+interface Props {
+  url: string
+  headings: Heading[]
+}
+
+const { url, headings } = Astro.props
+---
+
+{
+  headings.length === 0 ? null : (
+    <aside class="-ml-64 xl:mr-24 sticky top-12 w-52 h-full hidden xl:block">
+      <header class="mb-4">
+        <Typography as="h2" variant="sub_title">
+          In this article
+        </Typography>
+      </header>
+      <nav class="mb-8">
+        <ul id="aside-nav" class="[&>li]:my-2">
+          {headings.map(({ depth, slug, text }) => (
+            <li>
+              <a
+                href={`#${slug}`}
+                class:list={[
+                  'text-neutral-500 hover:text-neutral-100 block',
+                  [depth === 3 && 'pl-2'],
+                  [depth === 4 && 'pl-4'],
+                  [depth === 5 && 'pl-6'],
+                  [depth === 6 && 'pl-8']
+                ]}
+              >
+                {text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <footer class="pt-4 border-t border-neutral-800">
+        <Typography
+          as="a"
+          href="#top"
+          variant="icon"
+          class="text-neutral-600 hover:text-neutral-400"
+        >
+          <ArrowUpIcon class="size-3.5 mb-0.5 rotate-45" />
+          Scroll to top
+        </Typography>
+        <Typography
+          as="a"
+          href={`${GITHUB_URL}/edit${url}.mdx`}
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="icon"
+          class="text-neutral-600 hover:text-neutral-400"
+        >
+          <GitHubIcon class="size-3.5 mb-0.5" />
+          <span>Edit this article</span>
+        </Typography>
+      </footer>
+    </aside>
+  )
+}
+
+<script>
+  const updateAnchorStyles = () => {
+    const hash = window.location.hash
+    const anchors = document.querySelectorAll('#aside-nav a')
+
+    anchors.forEach((anchor) => {
+      const elementHash = anchor.getAttribute('href')
+      anchor.classList.toggle('text-neutral-100', hash === elementHash)
+      anchor.classList.toggle('text-neutral-500', hash !== elementHash)
+    })
+  }
+
+  updateAnchorStyles()
+
+  window.addEventListener('hashchange', () => {
+    updateAnchorStyles()
+  })
+</script>

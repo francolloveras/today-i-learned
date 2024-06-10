@@ -1,0 +1,41 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: How run multiple fetch requests simultaneously
+sortTitle: Run multiple fetch requests
+date: 2024-05-15
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+With `Promise.all()` you can make multiple `fetch` requests simultaneously.
+
+```typescript
+const INVESTMENTS_API = 'https://api.example.com/investments'
+const BILLS_API = 'https://api.example.com/bills'
+
+const fetchData = async (url: string) => {
+  const response = await fetch(url)
+  return response.json()
+}
+
+const getData = async () => {
+  try {
+    // Start fetching both URLs simultaneously using Promise.all()
+    const [investments, bills] = await Promise.all([
+      fetchData(INVESTMENTS_API),
+      fetchData(BILLS_API)
+    ])
+
+    console.log('investments:', investments)
+    console.log('bills:', bills)
+  } catch (error) {
+    console.error('Error fetching data:', error)
+  }
+}
+
+void getData()
+```
+
+The data from the requests is then available in the order they were passed to `Promise.all()`, which we can then process further as needed.

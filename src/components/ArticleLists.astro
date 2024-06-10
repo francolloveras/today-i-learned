@@ -1,0 +1,49 @@
+---
+import type { ArticleFrontmatter } from '@/lib/types'
+import { formatDate, groupArticlesByMonth } from '@/lib/utils'
+import Typography from '@/ui/Typography.astro'
+
+const articles = await Astro.glob<ArticleFrontmatter>('@/pages/2024/*.mdx')
+const groupedArticles = groupArticlesByMonth(articles)
+---
+
+<nav class="w-full flex flex-col">
+  {
+    Object.entries(groupedArticles).map(([month, articles]) => (
+      <ol class="[&>header]:first:before:top-6">
+        <header class="relative py-6 before:content[''] before:absolute before:-z-10 before:md:left-[136px] before:-top-1.5 before:w-1 before:h-[calc(100%+48px)] before:bg-neutral-800">
+          <Typography
+            as="h2"
+            variant="sub_title"
+            class="-ml-2 md:ml-[calc(128px-6%)] bg-[#121212] z-20"
+          >
+            {month}
+          </Typography>
+        </header>
+        {articles.map(({ url, frontmatter: { title, date } }) => (
+          <li class="flex gap-x-6 flex-col md:flex-row [&>div>a]:last:mb-0 [&>li>ol>div]:last:before:hidden">
+            <span class="hidden min-w-28 text-sm md:block text-right text-neutral-500">
+              {formatDate(date, {
+                month: 'long',
+                day: '2-digit',
+                timeZone: 'UTC'
+              })}
+            </span>
+            <div class="relative pl-6 before:content[''] before:absolute before:left-0 before:top-1.5 after:size-4 after:block after:rounded-full after:bg-neutral-800 after:absolute after:-left-1.5 after:top-1.5 before:w-1 before:h-full before:bg-neutral-800">
+              <span class="block md:hidden text-sm text-neutral-500">
+                {formatDate(date, {
+                  month: 'long',
+                  day: '2-digit',
+                  timeZone: 'UTC'
+                })}
+              </span>
+              <a href={url} class="mb-8 block text-base md:text-xl hover:text-purple-400">
+                {title}
+              </a>
+            </div>
+          </li>
+        ))}
+      </ol>
+    ))
+  }
+</nav>

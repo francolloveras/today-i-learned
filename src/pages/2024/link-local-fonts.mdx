@@ -1,0 +1,27 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: How link and load local fonts
+sortTitle: Link local fonts
+date: 2024-04-12
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+First you need the font file and the different font styles if it has one. And to link it you can use `@font-face` setting the name and the source.
+
+```css
+@font-face {
+  font-family: 'Roboto';
+  src: url('./roboto-regular.woff') format('woff');
+}
+```
+
+Then you can use it as you normally use it.
+
+```css
+body {
+  font-family: 'Roboto', sans-serif;
+}
+```

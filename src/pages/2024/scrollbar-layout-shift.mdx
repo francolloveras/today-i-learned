@@ -1,0 +1,22 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Prevent scrollbar layout shift
+sortTitle: Scrollbar layout shift
+date: 2024-06-04
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+Using `scrollbar-gutter` with `stable` value you can reserve space for the scrollbar even if there is no scroll, this allow to avoid layout shift.
+
+```css
+body {
+  scrollbar-gutter: stable;
+}
+```
+
+For more information read [MDN scrollbar gutter docs](https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-gutter).
+
+For browser compatibility read [Can I Use scrollbar gutter](https://caniuse.com/mdn-css_properties_scrollbar-gutter).

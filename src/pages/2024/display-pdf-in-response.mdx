@@ -1,0 +1,35 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Display a PDF file in API Response
+sortTitle: Display PDF in response
+date: 2024-05-22
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+Setting `Content-Disposition` to `inline` we can display PDF files in API responses instead of downloading.
+
+```typescript
+import { readFile } from 'fs/promises'
+import { join } from 'path'
+
+export async function GET(request: Request, { params }: { params: { fileName: string } }) {
+  try {
+    const filesPath = join(process.cwd(), params.fileName)
+    const fileBuffer = await readFile(filesPath)
+
+    return new Response(fileBuffer, {
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': 'inline'
+    })
+  } catch (error) {
+    return new Response(null, {
+      status: 500
+    })
+  }
+}
+```
+
+_Note: The API response display depends to the server configuration._

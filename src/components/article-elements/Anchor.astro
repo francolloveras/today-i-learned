@@ -1,0 +1,29 @@
+---
+import ArrowUpIcon from '@/icons/ArrowUp.astro'
+import Typography from '@/ui/Typography.astro'
+
+interface Props extends astroHTML.JSX.AnchorHTMLAttributes {
+  href: string
+}
+
+const isExternal = Astro.props.href.includes('https://')
+
+const props = {
+  ...Astro.props,
+  ...(isExternal && {
+    rel: 'noopener noreferrer',
+    target: '_blank'
+  })
+}
+---
+
+<a {...props}>
+  <slot />
+  {
+    isExternal && (
+      <Typography as="span" variant="icon">
+        <ArrowUpIcon class="size-3 -ml-0.5 rotate-45" />
+      </Typography>
+    )
+  }
+</a>

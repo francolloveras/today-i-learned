@@ -1,0 +1,39 @@
+---
+import ArrowForwardIcon from '@/icons/ArrowForward.astro'
+import HomeIcon from '@/icons/Home.astro'
+import Typography from '@/ui/Typography.astro'
+import { formatPath } from '@/lib/utils'
+
+const paths = Astro.url.pathname.split('/').filter((value) => value.length > 0)
+paths.unshift('')
+---
+
+<nav class="w-fit text-neutral-400 text-sm">
+  <ol class="flex items-center gap-x-0.5">
+    {
+      paths.map((path, index) => {
+        const parsedPath = formatPath(path)
+        const accessibilityPath = parsedPath === '' ? 'Home' : parsedPath
+
+        return (
+          <Typography as="li" variant="icon">
+            <a
+              title={accessibilityPath}
+              aria-label={accessibilityPath}
+              rel={`Go to ${accessibilityPath}`}
+              href={index > 1 ? `/${paths[index - 1]}/${path}` : `/${path}`}
+              class="hover:text-neutral-300"
+            >
+              {path === '' ? <HomeIcon class="size-3.5 mb-0.5" /> : parsedPath}
+            </a>
+            {paths.length > index + 1 && (
+              <span>
+                <ArrowForwardIcon class="h-3 mb-0.5" />
+              </span>
+            )}
+          </Typography>
+        )
+      })
+    }
+  </ol>
+</nav>

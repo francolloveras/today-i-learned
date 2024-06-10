@@ -1,0 +1,40 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Create and publish a NPM package
+sortTitle: Publish NPM package
+date: 2024-05-12
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+With `npm publish` you can publish a NPM package, to do that you need to be logged, you can do it by using `npm login`.
+
+You can initialize the package with `npm init --scope=@username` or add your username in the `package.json` to publish with your user scope.
+
+```json
+{
+  "name": "@username/package-name",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  }
+}
+```
+
+When you make changes, update the version number in the `package.json`, according to [semantic versioning](https://semver.org/).
+
+- Patch: 1.0.1 for bug fixes
+- Minor: 1.1.0 for new features that are backwards-compatible
+- Major: 2.0.0 for changes that break backwards compatibility
+
+Also you can use file like `.npmignore` if there are files you don’t want to publish, similar to `.gitignore`.
+
+```bash
+# .npmignore
+/src
+tsconfig.json
+jest.config.js
+```

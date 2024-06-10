@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: 'rubik', system-ui;
+  color-scheme: light dark;
+  scroll-behavior: smooth;
+}
+
+@font-face {
+  font-family: 'rubik';
+  src: url('/fonts/rubik.ttf') format('truetype');
+}
+
+@layer base {
+  body {
+    @apply text-sm md:text-base w-screen;
+  }
+
+  ::-webkit-scrollbar {
+    @apply md:w-[26px];
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-neutral-800 bg-clip-padding border-8 border-black/0 border-solid;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-600;
+  }
+
+  #article h2 {
+    @apply text-2xl mt-14 font-semibold scroll-m-6;
+  }
+
+  #article h3 {
+    @apply text-xl mt-12 scroll-m-6;
+  }
+
+  #article p {
+    @apply my-4 text-neutral-300;
+  }
+
+  #article code {
+    @apply bg-neutral-800 text-neutral-100 px-2 py-0.5 text-xs md:text-sm rounded-md;
+  }
+
+  #article pre code {
+    @apply p-0 md:text-base;
+  }
+
+  #article pre {
+    @apply !bg-neutral-800 py-2 px-4 my-4 rounded-md;
+  }
+
+  #article a {
+    @apply text-purple-300 hover:text-purple-400;
+  }
+
+  #article ul {
+    @apply m-4 ml-6 list-disc marker:text-neutral-400;
+  }
+
+  #article ol {
+    @apply m-4 ml-6 list-decimal marker:text-neutral-400;
+  }
+
+  #article img {
+    @apply rounded-md;
+  }
+}

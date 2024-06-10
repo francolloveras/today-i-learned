@@ -1,0 +1,55 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Add type to a Prisma JSON fields
+sortTitle: Typed Prisma JSON fields
+date: 2024-04-16
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+Using the external package [prisma-json-types-generator](https://www.npmjs.com/package/prisma-json-types-generator) you can type JSON fields in Prisma.
+
+1. Install and configure the package adding the json provider.
+
+   ```prisma
+   generator client {
+     provider = "prisma-client-js"
+   }
+
+   /// Always after the prisma-client-js generator
+   generator json {
+     provider = "prisma-json-types-generator"
+   }
+   ```
+
+2. Then update your model adding the type by using abstract syntax tree comments.
+
+   ```prisma
+   model User {
+      id Int @id
+      /// [UserAddress] <- Your type here
+      address Json
+   }
+   ```
+
+3. Finally declare the PrismaJson namespace adding your type.
+
+   ```typescript
+   declare global {
+     namespace PrismaJson {
+       interface UserAddress {
+         city: string
+         street: string
+         postalCode: number
+       }
+     }
+   }
+   ```
+
+   **Important**: Make sure the file has the extension `.d.ts`. Otherwise your types may not work.
+
+Every time that you changed your declarations types, you need to migrate the scheme to implement it.
+
+For more information visit [Prisma documentation](https://www.prisma.io/docs/orm/prisma-client/special-fields-and-types/working-with-json-fields#typed-json) and the [prisma-json-types-generator](https://www.npmjs.com/package/prisma-json-types-generator) package.
