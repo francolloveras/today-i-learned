@@ -1,53 +1,13 @@
-![Demo picture](https://astro-template-rose.vercel.app/demo.png)
+# Today I Learned
 
-# 🚀 How to use
+In this blog I want to share all the daily knowledge that I am learning on my programming journey. Also, I want to store it, because I have a bad memory.
 
-You need to have [Node 18.14.1](https://nodejs.org) or later, and run:
+## Technologies
 
-```bash
-npm create astro@latest --template classiuz/astro-template
-```
+- [Astro](https://astro.build/) - The web framework for content-driven websites
+- [MDX](https://mdxjs.com/) - MDX lets you use JSX in your markdown content.
+- [Tailwindcss](https://tailwindcss.com/) - A utility-first CSS framework packed
 
-Then you need to install the necessary dependencies.
+## Contributing
 
-```bash
-npm install
-```
-
-## ▶️ Starting
-
-To start in development mode run.
-
-```bash
-npm run dev
-```
-
-To start in production mode run.
-
-```bash
-npm run build
-# AND
-npm run start
-```
-
-## ✅ Template features
-
-- [Astro](https://astro.build) - The web framework for content-driven websites.
-- [Tailwind.css](https://tailwindcss.com) - A utility-first CSS framework.
-- [TypeScript](https://www.typescriptlang.org) - JavaScript with syntax for types.
-- [ESLint](https://eslint.org) - Find and fix problems in the code.
-- [Prettier](https://prettier.io) - An opinionated code formatter.
-
-## 🤖 Scripts
-
-| Script   | Description                                                 |
-| -------- | ----------------------------------------------------------- |
-| `dev`    | Starts the project in development mode.                     |
-| `build`  | Creates a static version of the project.                    |
-| `start`  | Starts the project in production mode; a build is required. |
-| `format` | Formats the document with Prettier.                         |
-| `lint`   | Lints all files and searches for any errors.                |
-
----
-
-Created by **Franco Lloveras** - v1.0.0
+Contributions are welcome! Please feel free to submit a pull request if you find any issues or have suggestions for improvements.
