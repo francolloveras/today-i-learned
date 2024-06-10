@@ -1,0 +1,20 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Restart node process when file is saved
+sortTitle: Restart node process on save
+date: 2024-06-10
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+With the `--watch` flag you can restart the Node process when a file is saved. This only works with JavaScript files, if you need to do this with TypeScript you need to use [Nodemon](https://github.com/remy/nodemon).
+
+```bash
+node --watch index.js
+```
+
+The `--watch` flag is stable in Node v22.0.0 or later.
+
+Read [Node `--watch` docs](https://nodejs.org/api/cli.html#--watch) for more information.
