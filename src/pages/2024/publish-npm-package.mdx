@@ -3,13 +3,15 @@ layout: '@/layouts/PostLayout.astro'
 title: Create and publish a NPM package
 sortTitle: Publish NPM package
 date: 2024-05-12
-lastEdit: null
+lastEdit: 2024-06-13
 ---
 
 import { Anchor } from '@/components/article-elements'
 export const components = { a: Anchor }
 
 With `npm publish` you can publish a NPM package, to do that you need to be logged, you can do it by using `npm login`.
+
+> **Edit**: Scoped packages are private by default, so you need to use the --access public flag to make it public. Non-public packages require payment.
 
 You can initialize the package with `npm init --scope=@username` or add your username in the `package.json` to publish with your user scope.
 
