@@ -1,0 +1,47 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Read environment variables with native Node.js
+sortTitle: Read node env variables
+date: 2024-06-11
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+With `loadEnvFile()` process method you can read environment variables in Node.js.
+
+First create the `.env` file and set the variables.
+
+```ini
+# .env
+API_URL="https://example.com/api"
+```
+
+And now read the variables using `process.loadEnvFile()` method.
+
+```javascript
+// Output: undefined
+console.log(process.env.API_URL)
+
+process.loadEnvFile()
+
+// Output: https://example.com/api
+console.log(process.env.API_URL)
+```
+
+Also you can pass a path to the `loadEnvFile()` process method to load a specific .env file, for example:
+
+```ini
+# .env.production
+PRODUCTION_API_URL="https://production-example.com/api"
+```
+
+```javascript
+process.loadEnvFile('./env.production')
+
+// Output: https://production-example.com/api
+console.log(process.env.PRODUCTION_API_URL)
+```
+
+This only works in Node.js v21.7.0 or later. Read more in the [Node release note](https://nodejs.org/en/blog/release/v21.7.0#loading-and-parsing-environment-variables) blog.
