@@ -1,0 +1,28 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: How to allow pnpm script on Windows
+sortTitle: Allow pnpm on Windows
+date: 2024-06-17
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+When you run external scripts for example `pnpm` in Windows you maybe get a Execution_Policies error. To fix this you need to change your execution policies.
+
+First open PowerShell as administrator. Then run `Get-ExecutionPolicy` to get your current policies.
+
+```bash
+Get-ExecutionPolicy # Output expected: Restricted
+```
+
+Then change the execution policies to `RemoteSigned` using the `Set-ExecutionPolicy -ExecutionPolicy <PolicyName>` command.
+
+```bash
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+```
+
+This will change your execution policies and now you can run external scripts like `pnpm`.
+
+Read more about execution policies in [Microsoft learn docs](https://go.microsoft.com/fwlink/?LinkID=135170).
