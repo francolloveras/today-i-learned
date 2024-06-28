@@ -1,0 +1,56 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Use TypeScript path aliases in Node.js
+sortTitle: Use path aliases in Node.js
+date: 2024-06-16
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+First you need to set the basic path aliases config in `tsconfig.json`.
+
+```json
+{
+  "compilerOptions": {
+    // ...Existing configuration
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    }
+  }
+}
+```
+
+This allow you to use aliases (`@`) in your code.
+
+```ts
+// If our project structure looks like this:
+// project-root/
+// │
+// ├── src/
+// │   ├── lib/
+// │   │   └── utils.tsx
+// │   │
+// │   ├── index.ts
+// │
+// ├── tsconfig.json
+// ├── ...
+import { getDate } from '@/lib/utils'
+
+const date = getDate()
+```
+
+Now, when you build your application, you need to install [tsc-alias](https://www.npmjs.com/package/tsc-alias) package, and edit the build command in `package.json`.
+
+```json
+{
+  // ...Existing configuration
+  "scripts": {
+    "build": "tsc && tsc-alias"
+  }
+}
+```
+
+This will replace alias paths with relative paths after typescript compilation.
