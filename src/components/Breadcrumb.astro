@@ -1,11 +1,10 @@
 ---
 import ArrowForwardIcon from '@/icons/ArrowForward.astro'
 import HomeIcon from '@/icons/Home.astro'
-import Typography from '@/ui/Typography.astro'
 import { formatPath } from '@/lib/utils'
+import Typography from '@/ui/Typography.astro'
 
 const paths = Astro.url.pathname.split('/').filter((value) => value.length > 0)
-paths.unshift('')
 ---
 
 <nav class="w-fit text-neutral-400 text-sm">
@@ -13,7 +12,7 @@ paths.unshift('')
     {
       paths.map((path, index) => {
         const parsedPath = formatPath(path)
-        const accessibilityPath = parsedPath === '' ? 'Home' : parsedPath
+        const accessibilityPath = parsedPath === 'Today I Learned' ? 'Home' : parsedPath
 
         return (
           <Typography as="li" variant="icon">
@@ -21,10 +20,10 @@ paths.unshift('')
               title={accessibilityPath}
               aria-label={accessibilityPath}
               rel={`Go to ${accessibilityPath}`}
-              href={index > 1 ? `/${paths[index - 1]}/${path}` : `/${path}`}
+              href={index === 0 ? `/${path}` : `/${paths.slice(0, index + 1).join('/')}`}
               class="hover:text-neutral-300"
             >
-              {path === '' ? <HomeIcon class="size-3.5 mb-0.5" /> : parsedPath}
+              {path === 'today-i-learned' ? <HomeIcon class="size-3.5 mb-0.5" /> : parsedPath}
             </a>
             {paths.length > index + 1 && (
               <span>
