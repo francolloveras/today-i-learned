@@ -1,11 +1,11 @@
 ---
-import Typography from '@/ui/Typography.astro'
-import Layout from '@/layouts/Layout.astro'
-import { formatDate } from '@/lib/utils'
-import Breadcrumb from '@/components/Breadcrumb.astro'
-import AsideArticle from '@/components/AsideArticle.astro'
 import Article from '@/components/Article.astro'
-import type { Heading, ArticleFrontmatter } from '@/lib/types'
+import AsideArticle from '@/components/AsideArticle.astro'
+import Breadcrumb from '@/components/Breadcrumb.astro'
+import Layout from '@/layouts/Layout.astro'
+import type { ArticleFrontmatter, Heading } from '@/lib/types'
+import { formatDate } from '@/lib/utils'
+import Typography from '@/ui/Typography.astro'
 
 interface Props {
   url: string
