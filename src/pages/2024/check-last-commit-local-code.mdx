@@ -1,0 +1,22 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: How to know the last commit using Git
+sortTitle: Check last commit local code
+date: 2024-07-12
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+You can use `git log -1` thats show you the most recent commit, including details like the commit hash, author, date, and commit message.
+
+```bash
+git log -1
+```
+
+Also you can use `git show --oneline -s`, this will display just the commit hash and the commit message of the last commit.
+
+```bash
+git show --oneline -s
+```
