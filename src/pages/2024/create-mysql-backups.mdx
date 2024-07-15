@@ -1,0 +1,28 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Create and restore MySQL backups
+sortTitle: Create MySQL backups
+date: 2024-07-15
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+With the `mysqldump` command you can create sql database backup file.
+
+```bash
+mysqldump -u username -p database_name > path\to\your\backup.sql
+```
+
+Once you have a sql file you can restore with the following command.
+
+```bash
+mysql -u username -p database_name < path\to\your\backup.sql
+```
+
+Maybe you need to navigate to the MySQL installation path to run this commands.
+
+```bash
+cd C:\Program Files\MySQL\MySQL Server 8.0\bin
+```
