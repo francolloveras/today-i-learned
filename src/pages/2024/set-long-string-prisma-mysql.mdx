@@ -1,0 +1,26 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Set long string in Prisma using MySQL
+sortTitle: Set long string Prisma MySQL
+date: 2024-07-16
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+In Prisma the string types by default is `varchar(191)`, this means that only can have 191 characters.
+
+Using the type attribute `@db`, you can modify the length of the text string.
+
+```prisma
+model Model {
+  /* ... */
+  text        String    @db.Text
+  tinyText    String    @db.TinyText
+  mediumText  String    @db.MediumText
+  longText    String    @db.LongText
+}
+```
+
+Read more about [Prisma MySQL string](https://www.prisma.io/docs/orm/reference/prisma-schema-reference#mysql).
