@@ -1,0 +1,46 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Automatically start a PM2 process on startup
+sortTitle: Start a PM2 process on startup
+date: 2024-07-17
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+[PM2](https://pm2.keymetrics.io/) is a daemon process manager that will help you manage and keep your application online 24/7.
+
+With the `start` command you can start your application.
+
+```bash
+pm2 start npm --name "my-application" -- start
+```
+
+Once your application is started you can check the status using `status`.
+
+```bash
+pm2 status
+```
+
+When the server restarts, the process will not start automatically. So, to fix this you need to save your process list using `save`.
+
+```bash
+pm2 save
+```
+
+Once your process list is saved you need to run `startup`.
+
+```bash
+pm2 startup
+```
+
+This command will output a command specific to your system's init system. For example you can see something like this.
+
+```bash
+sudo env PATH=$PATH:/usr/bin pm2 startup <init-system> -u <user> --hp <home-path>
+```
+
+Finally, copy and run the command provided by the pm2 startup output.
+
+After running the command, you can reboot your server and PM2 processes will be start automatically. Read more in [PM2 documentation](https://pm2.keymetrics.io/docs/usage/quick-start/).
