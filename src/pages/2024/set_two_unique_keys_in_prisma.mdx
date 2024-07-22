@@ -1,0 +1,40 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Set two or more unique keys in Prisma
+sortTitle: Set two unique keys in Prisma
+date: 2024-07-22
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+Using the `@@unique()` attributes you can set a compound unique constraint.
+
+```prisma
+model TableData {
+  id       Int    @id @default(autoincrement())
+  tableId  String
+  metadata Json
+  userId   Int
+
+  @@unique([tableId, userId])
+}
+```
+
+Prisma will enforce a unique constraint on the combination of `tableId` and `userId`. This means that while `tableId` and `userId` can each have duplicate values individually, but the same combination of both values cannot be repeated.
+
+To query this, you need to use a specific structure, in this example `tableId_userId`. This can be customize using the `name` field.
+
+```javascript
+const tableData = await prisma.tableData.findUnique({
+  where: {
+    tableId_userId: {
+      tableId: id,
+      userId: user.id
+    }
+  }
+})
+```
+
+Read more in the [Prisma Documentation](https://www.prisma.io/docs/orm/prisma-client/special-fields-and-types/working-with-composite-ids-and-constraints)
