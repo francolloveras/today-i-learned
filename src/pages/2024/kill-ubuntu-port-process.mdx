@@ -1,0 +1,28 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: How to kill a ubuntu port process
+sortTitle: Kill ubuntu port process
+date: 2024-07-23
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+First you need to identify the Process ID `PID` using the port.
+
+```bash
+lsof -i :PORT # For example: lsof -i :3000
+```
+
+Once you have the `PID` you can use the `kill` command to kill the process.
+
+```bash
+kill PID # For example: kill 12345
+```
+
+If the process does not terminate, you can use the `-9` option to forcefully kill it.
+
+```bash
+kill -9 PID # For example: kill -9 12345
+```
