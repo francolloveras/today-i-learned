@@ -1,0 +1,18 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: How to create a fake JavaScript timeout in one line of code
+sortTitle: Create a fake JavaScript timeout
+date: 2024-07-24
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+Using the `Promise()` constructor, you can create a fake timeout in one line of code.
+
+```javascript
+await new Promise((resolve) => setTimeout(resolve, 5000))
+```
+
+Change the `5000` value to set the time to wait in miliseconds.
