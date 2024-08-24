@@ -1,0 +1,22 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: How restart Ubuntu system using CLI command
+sortTitle: Restart Ubuntu System
+date: 2024-08-24
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+You can use `sudo reboot` to restart an Ubuntu system using the command line.
+
+```bash
+sudo reboot
+```
+
+Alternatively, you can use:
+
+```bash
+sudo shutdown -r now
+```
