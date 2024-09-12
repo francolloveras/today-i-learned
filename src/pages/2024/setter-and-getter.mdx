@@ -1,0 +1,41 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Setter and Getter in JavaScript
+sortTitle: Setter and Getter
+date: 2024-09-11
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+Getter `(get)` recalculates or retrieves the value when accessed. Setter `(set)` allows you to define custom logic when a value is assigned to the property.
+
+For example:
+
+```javascript
+const $list = document.querySelector('ul')
+
+const data = {
+  get options() {
+    return Array.from($list.children).map(({ textContent }) => textContent)
+  },
+  set options(newOptions) {
+    // Add new children to the list based on the provided options
+    newOptions.forEach((option) => {
+      const li = document.createElement('li')
+      li.textContent = option
+      $list.appendChild(li)
+    })
+  }
+}
+
+// Accessing options (getter)
+console.log(data.options)
+
+// Updating options (setter)
+data.options = ['New Option 1', 'New Option 2', 'New Option 3']
+console.log(data.options) // Reflects the updated list
+```
+
+Read more about the [set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) and [get](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) methods in MDN documentation.
