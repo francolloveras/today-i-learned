@@ -1,0 +1,32 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: How to print a webpage with same styles
+sortTitle: Print with same styles
+date: 2024-09-25
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+By default, browsers use `@media print` to define styles for printed documents, this can make it hard to print a webpage with the same styles as the original one.
+
+To solve this, you can use the `print-color-adjust: exact;` CSS property to force the browser to use the exact same colors as the original document.
+
+```css
+body {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+```
+
+Also, you can use the `@media print` CSS rule to define styles for printed documents. For example, if your page is in dark mode, you can set the background color to white and the text color to black.
+
+```css
+@media print {
+  body {
+    background-color: white;
+    color: black;
+  }
+}
+```
