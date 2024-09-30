@@ -1,0 +1,54 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: The differences between toString() and String()
+sortTitle: Differences between toString and String
+date: 2024-09-30
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+The main difference between `.toString()` and `String()` is how they handle `null` and `undefined` values, as well as their usage.
+
+1. `.toString()`:
+
+    ```javascript
+    const myNumber = 123
+    console.log(myNumber.toString())
+    // Expected output: "123"
+
+    const myObject = {
+      name: 'John',
+      age: 30,
+      city: 'New York'
+    }
+
+    console.log(myObject.toString())
+    // Expected output: [object Object]
+
+    const myNull = null
+    console.log(myNull.toString())
+    // Expected output: Uncaught TypeError: Cannot read properties of null (reading 'toString')
+    ```
+
+2. `String()`:
+
+    ```javascript
+    const myNumber = 123
+    console.log(String(123))
+    // Expected output: "123"
+
+    const myObject = {
+      name: 'John',
+      age: 30,
+      city: 'New York'
+    }
+
+    console.log(String(myObject))
+    // Expected output: [object Object]
+
+    const myNull = null
+    console.log(String(myNull))
+    // Expected output: "null"
+    ```
