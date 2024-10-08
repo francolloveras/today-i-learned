@@ -1,0 +1,20 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Automatically update a date field when a record is updated in Prisma
+sortTitle: Automatically update a record in Prisma
+date: 2024-10-08
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+Using the attribute `@updatedAt` you can automatically update a data field every time a record is updated.
+
+```prisma
+model MyModel {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+```
