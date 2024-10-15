@@ -1,0 +1,58 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: How add vanilla JavaScript language selection
+sortTitle: Vanilla JavaScript language selection
+date: 2024-10-14
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+First create a select input with the language `id`.
+
+```html
+<select id="language">
+  <option value="en">English</option>
+  <option value="es">Spanish</option>
+  <option value="fr">French</option>
+</select>
+```
+
+Then, define the text elements on your page with a way to reference the translation. You can use `data-*` attributes to store the text in different languages.
+
+```html
+<p data-en="Hello world!" data-es="¡Hola mundo!" data-fr="Bonjour le monde!">Hello world!</p>
+```
+
+Finally, add the logic to handle the language selection using the `localStorage` API and the `data-*` attributes.
+
+```js
+const $languageInput = document.querySelector('select#language')
+
+// Change the language of the page using the data attributes.
+function changeLanguage(language) {
+  const translatableElements = document.querySelectorAll('[data-en]')
+
+  translatableElements.forEach((element) => {
+    element.textContent = element.getAttribute(`data-${language}`)
+  })
+}
+
+// Add change event listener to the language input.
+$languageInput.addEventListener('change', (event) => {
+  const selectedLanguage = event.target.value
+
+  // Save the selected language in localStorage.
+  localStorage.setItem('selectedLanguage', selectedLanguage)
+  changeLanguage(selectedLanguage)
+})
+
+// Use localStorage API to get and update the page language.
+document.addEventListener('DOMContentLoaded', () => {
+  const savedLanguage = localStorage.getItem('selectedLanguage') || 'en'
+
+  $languageInput.value = savedLanguage
+  changeLanguage(savedLanguage)
+})
+```
