@@ -1,0 +1,22 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: The differences between logical or (||) and nullish coalescing (??) operators
+sortTitle: Differences between logical or and nullish coalescing
+date: 2024-10-17
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+Both operators are used to assign default valuesut they differ in how they determine what is considered a "falsy".
+
+- Logical or (`||`): Returns the right-hand if the left-hand operand is falsy (`false`, `0`, `''`, `null`, `undefined`, and `NaN`).
+
+- Nullish coalescing (`??`): Returns the right-hand operand if it is not `null` or `undefined`.
+
+```javascript
+const a = 0
+const b = a || 5 // b will be 5, since 0 is falsy.
+const c = a ?? 5 // c will be 0, since 0 is not null or undefined.
+```
