@@ -1,0 +1,21 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: HTML Label element triggers onchange events
+sortTitle: Label element triggers onchange
+date: 2024-11-26
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+The HTML `<label>` element triggers a `change` event whenever the value of the associated form element changes, even if the input is hidden with `display: none`.
+
+```html
+<label for="input">
+  <p>If you click me, the input will change since is wrapper into a `label` tag.</p>
+  <input type="checkbox" name="input" id="input" onchange="onchange" />
+</label>
+```
+
+Note: To associated a `input` with a `label` tag, you need to use the `for` attribute.
