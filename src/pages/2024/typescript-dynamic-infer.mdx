@@ -1,0 +1,65 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: How dynamically infer the key of a TypeScript object
+sortTitle: TypeScript dynamic infer
+date: 2024-12-12
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+With TypeScript you can dynamically infer the key of a TypeScript object, using the `keyof` operator.
+
+```ts
+interface Fields {
+  name: string
+  age: number
+  address: {
+    city: string
+    street: string
+  }
+}
+
+interface ColumnBase<Data, Field extends keyof Data> {
+  field: Field
+  header: string
+  render?: (fieldValue: Data[Field]) => string
+}
+
+// Infer the type for each field in the Data structure.
+type Column<Data> = {
+  [K in keyof Data]: ColumnBase<Data, K>
+}[keyof Data]
+
+const columns: Column<Data>[] = [
+  {
+    field: 'name',
+    header: 'Name',
+    // Because the 'field' is 'name'
+    // the type of the fieldValue is string.
+    render: (fieldValue) => fieldValue
+  },
+  {
+    field: 'age',
+    header: 'Age',
+    // Because the 'field' is 'age'
+    // the type of the fieldValue is number.
+    render: (fieldValue) => fieldValue.toString()
+  },
+  {
+    field: 'address',
+    header: 'City',
+    // Because the 'field' is 'address'
+    // the type of the fieldValue is { city: string, street: string }.
+    render: (fieldValue) => fieldValue.city
+  },
+  {
+    field: 'address',
+    header: 'Street',
+    // Because the 'field' is 'address'
+    // the type of the fieldValue is { city: string, street: string }.
+    render: (fieldValue) => fieldValue.street
+  }
+]
+```
