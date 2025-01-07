@@ -1,0 +1,22 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: How to check the columns from a MySQL database table
+sortTitle: Check MySQL table columns
+date: 2025-01-7
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+There's many way to check the columns names from a MySQL database table, frist using `DESCRIBE` Statement.
+
+```sql
+DESCRIBE table_name;
+```
+
+Other using the `SHOW COLUMNS` command.
+
+```sql
+SHOW COLUMNS FROM table_name;
+```
