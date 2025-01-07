@@ -3,7 +3,7 @@ import type { ArticleFrontmatter } from '@/lib/types'
 import { formatDate, groupArticlesByMonth } from '@/lib/utils'
 import Typography from '@/ui/Typography.astro'
 
-const articles = await Astro.glob<ArticleFrontmatter>('@/pages/2024/*.mdx')
+const articles = await Astro.glob<ArticleFrontmatter>('@/pages/*/*.mdx')
 const groupedArticles = groupArticlesByMonth(articles)
 ---
 
