@@ -1,0 +1,24 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Clone a Git Repository with a specific commit
+sortTitle: Clone repository specific commit
+date: 2025-01-8
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+First you need to clone the repository that you want to get a specific commit.
+
+```bash
+git clone <repository-url>
+```
+
+Then navigate into cloned repository and check out the commit you need using its hash.
+
+```bash
+git checkout <commit-hash>
+```
+
+This will put your working directory in a detached HEAD state at the specified commit.
