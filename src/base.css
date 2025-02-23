@@ -19,11 +19,11 @@ html {
   }
 
   #article h2 {
-    @apply text-2xl mt-14 font-semibold scroll-m-6;
+    @apply text-2xl mt-8 font-semibold scroll-m-6;
   }
 
   #article h3 {
-    @apply text-xl mt-12 scroll-m-6;
+    @apply text-xl mt-7 scroll-m-6;
   }
 
   #article p {
@@ -60,5 +60,29 @@ html {
 
   #article img {
     @apply rounded-md;
+  }
+
+  #article table {
+    @apply mt-4 border-neutral-600 border-separate border-spacing-0 rounded-md text-neutral-300 text-sm w-full;
+  }
+
+  #article table thead {
+    @apply bg-neutral-800 text-neutral-100;
+  }
+
+  #article table thead tr:first-child {
+    @apply first:[&>th]:rounded-tl-md last:[&>th]:rounded-tr-md;
+  }
+
+  #article table thead tr th {
+    @apply text-left px-4 py-2 font-medium border-y border-neutral-600 border-r first:border-l;
+  }
+
+  #article table tbody tr:last-child {
+    @apply first:[&>td]:rounded-bl-md last:[&>td]:rounded-br-md;
+  }
+
+  #article table tbody tr td {
+    @apply px-4 py-2 border-b border-neutral-600 border-r first:border-l;
   }
 }
