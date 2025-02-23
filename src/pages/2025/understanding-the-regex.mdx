@@ -1,0 +1,65 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Understanding the Regular expression (Regex)
+sortTitle: Understanding the Regex
+date: 2025-02-23
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+## Explication
+
+A Regular Expression (Regex) is used in JavaScript for pattern matching and text manipulation.
+
+## Creating regex
+
+Enclosed between `/` or use the constructor function `new RegExp()` to create a regex. Example `/\D/` or `new RegExp(\D)` using the constructor.
+
+## Using regex
+
+| Method         | Description                                                                                                      |
+| -------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `exec()`       | Executes a search for a match in a string. It returns an array of information or null on a mismatch.             |
+| `test()`       | Tests for a match in a string. It returns true or false.                                                         |
+| `match()`      | Returns an array containing all of the matches, including capturing groups, or null if no match is found.        |
+| `matchAll()`   | Returns an iterator containing all of the matches, including capturing groups.                                   |
+| `search()`     | Tests for a match in a string. It returns the index of the match, or -1 if the search fails.                     |
+| `replace()`    | Executes a search for a match in a string, and replaces the matched substring with a replacement substring.      |
+| `replaceAll()` | Executes a search for all matches in a string, and replaces the matched substrings with a replacement substring. |
+| `split()`      | Uses a regular expression or a fixed string to break a string into an array of substrings.                       |
+
+## Common patterns
+
+| Pattern | Meaning                                                   |
+| ------- | --------------------------------------------------------- |
+| `\d`    | Matches any digit (0-9)                                   |
+| `\D`    | Matches any non-digit                                     |
+| `\w`    | Matches any word character (letters, numbers, underscore) |
+| `\W`    | Matches any non-word character                            |
+| `\s`    | Matches any whitespace (spaces, tabs, newlines)           |
+| `\S`    | Matches any non-whitespace                                |
+| `^`     | Start of string                                           |
+| `$`     | End of string                                             |
+| `.`     | Matches any character except newline                      |
+| `[A-Z]` | Matches any uppercase letter                              |
+| `[a-z]` | Matches any lowercase letter                              |
+| `{n,m}` | Matches between n and m occurrences                       |
+
+## Patters flags
+
+| Flag | Meaning          | Use Case                                                      |
+| ---- | ---------------- | ------------------------------------------------------------- |
+| `g`  | Global           | Match all occurrences, not just the first                     |
+| `i`  | Case-Insensitive | Match regardless of uppercase/lowercase                       |
+| `m`  | Multiline        | `^` and `$` work for each line, not just the whole string     |
+| `s`  | Dotall           | `.` matches newlines as well                                  |
+| `u`  | Unicode          | Allows proper matching of Unicode (example, emojis)           |
+| `y`  | Sticky           | Match only at the exact position (controlled via `lastIndex`) |
+
+## Useful links
+
+- Read more about regex in [MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions).
+- Generate regex using [Regex generator](https://regex-generator.olafneumann.org/).
+- Test regex patterns interactively using [Regex101](https://regex101.com/).
