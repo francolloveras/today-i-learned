@@ -1,0 +1,22 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: How find null values in MySQL
+sortTitle: Find null values MySQL
+date: 2025-03-12
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+You can use `IS NULL` in a `SELECT` query to find null values.
+
+```sql
+SELECT * FROM your_table WHERE your_column IS NULL;
+```
+
+To search non-null values use `IS NOT NULL`.
+
+```sql
+SELECT * FROM your_table WHERE your_column IS NOT NULL;
+```
