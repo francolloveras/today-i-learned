@@ -1,0 +1,25 @@
+---
+layout: '@/layouts/PostLayout.astro'
+title: Copy MySQL table between databases
+sortTitle: Copy table between databases
+date: 2025-04-1
+lastEdit: null
+---
+
+import { Anchor } from '@/components/article-elements'
+export const components = { a: Anchor }
+
+Using `INSERT INTO ... SELECT` can copy table from one database to another.
+
+```sql
+INSERT INTO target_db.table SELECT * FROM source_db.table;
+```
+
+Also can be use `mysqldump` to copy a table with its structure and data.
+
+```bash
+mysqldump -u user -p source_db table > table_dump.sql
+mysql -u user -p target_db < table_dump.sql
+```
+
+Read more about `mysqldump` in [Create and restore MySQL backups](/today-i-learned/2024/create-mysql-backups) post.
